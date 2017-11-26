@@ -1,0 +1,2 @@
+# JavaHttpUtil
+基于URLConnection简易封装了一个HTTP请求插件（支持HTPP及HTTPS）
