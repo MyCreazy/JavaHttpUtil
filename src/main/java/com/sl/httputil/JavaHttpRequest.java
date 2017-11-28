@@ -152,6 +152,7 @@ public class JavaHttpRequest {
 		conn.setRequestProperty("Referer", requestParam.getReferUrl());
 		conn.setRequestProperty("Accept", requestParam.getAcceptType());
 		conn.setRequestProperty("Content-Type", requestParam.getContentType());
+		conn.setRequestProperty("User-Agent", requestParam.getUserAgent());
 		return conn;
 	}
 
