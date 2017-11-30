@@ -5,7 +5,7 @@ package com.sl.httputil.entity;
  * 
  * @author Administrator Nov 24, 2017
  */
-public class HttpRequestParam {
+public class HttpRequestParamVo {
 	/**
 	 * 请求的URL地址
 	 */
@@ -69,7 +69,7 @@ public class HttpRequestParam {
 	/**
 	 * 代理IP
 	 */
-	private ProxyIP proxyip = new ProxyIP();
+	private ProxyIPVo proxyip = new ProxyIPVo();
 
 	/**
 	 * 页面返回内容（默认为字符串）
@@ -168,7 +168,7 @@ public class HttpRequestParam {
 	 * 
 	 * @return
 	 */
-	public ProxyIP getProxyip() {
+	public ProxyIPVo getProxyip() {
 		return proxyip;
 	}
 
@@ -177,7 +177,7 @@ public class HttpRequestParam {
 	 * 
 	 * @param proxyip
 	 */
-	public void setProxyip(ProxyIP proxyip) {
+	public void setProxyip(ProxyIPVo proxyip) {
 		this.proxyip = proxyip;
 	}
 

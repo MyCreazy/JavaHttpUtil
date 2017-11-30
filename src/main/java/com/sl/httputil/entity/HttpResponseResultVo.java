@@ -6,7 +6,7 @@ package com.sl.httputil.entity;
  * @author Administrator
  *
  */
-public class HttpResponseResult {
+public class HttpResponseResultVo {
 	/**
 	 * html字符串结果
 	 */

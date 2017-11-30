@@ -5,7 +5,7 @@ package com.sl.httputil.entity;
  * 
  * @author Administrator Nov 24, 2017
  */
-public class ProxyIP {
+public class ProxyIPVo {
 	/**
 	 * 代理服务器地址（默认为本机）
 	 */

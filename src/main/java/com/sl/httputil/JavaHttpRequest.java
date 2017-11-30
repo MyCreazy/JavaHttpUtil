@@ -24,8 +24,8 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 
 import com.sl.httputil.entity.HtmlContentType;
-import com.sl.httputil.entity.HttpRequestParam;
-import com.sl.httputil.entity.HttpResponseResult;
+import com.sl.httputil.entity.HttpRequestParamVo;
+import com.sl.httputil.entity.HttpResponseResultVo;
 
 /**
  * HTTP请求
@@ -79,7 +79,7 @@ public class JavaHttpRequest {
 	 * @throws NoSuchProviderException
 	 * @throws KeyManagementException
 	 */
-	private static HttpsURLConnection getHttpsConnect(HttpRequestParam requestParam)
+	private static HttpsURLConnection getHttpsConnect(HttpRequestParamVo requestParam)
 			throws IOException, NoSuchAlgorithmException, NoSuchProviderException, KeyManagementException {
 		URL url = null;
 		HttpsURLConnection conn = null;
@@ -139,7 +139,7 @@ public class JavaHttpRequest {
 	 * @param requestParam
 	 * @return
 	 */
-	private static URLConnection buildRequestParam(URLConnection conn, HttpRequestParam requestParam) {
+	private static URLConnection buildRequestParam(URLConnection conn, HttpRequestParamVo requestParam) {
 		//// 如果是post请求，这两个参数需要进行设置
 		if (requestParam.getMethod().toLowerCase() == "post") {
 			conn.setDoOutput(true);
@@ -163,7 +163,7 @@ public class JavaHttpRequest {
 	 * @return
 	 * @throws IOException
 	 */
-	private static HttpURLConnection getHttpConnect(HttpRequestParam requestParam) throws IOException {
+	private static HttpURLConnection getHttpConnect(HttpRequestParamVo requestParam) throws IOException {
 		URL url = null;
 		HttpURLConnection conn = null;
 		try {
@@ -208,9 +208,9 @@ public class JavaHttpRequest {
 	 * @return
 	 * @throws Exception
 	 */
-	private static HttpResponseResult analysisResult(HttpRequestParam requestParam, InputStream inputstream,
+	private static HttpResponseResultVo analysisResult(HttpRequestParamVo requestParam, InputStream inputstream,
 			URLConnection conn) throws Exception {
-		HttpResponseResult responseResult = new HttpResponseResult();
+		HttpResponseResultVo responseResult = new HttpResponseResultVo();
 		StringBuffer buffer = null;
 		InputStreamReader inputstreamread = null;
 		try {
@@ -257,15 +257,21 @@ public class JavaHttpRequest {
 	 * @return
 	 * @throws Exception
 	 */
-	public static HttpResponseResult getRequestResult(HttpRequestParam requestParam) throws Exception {
-		HttpResponseResult responseResult = new HttpResponseResult();
+	public static HttpResponseResultVo getRequestResult(HttpRequestParamVo requestParam) throws Exception {
+		HttpResponseResultVo responseResult = new HttpResponseResultVo();
 		URLConnection conn = null;
 		InputStream inputstream = null;
 		try {
 			//// 检查是否符合URL规范,简单检查比如是否带上HTTP或者https
 			String requesturl = requestParam.getUrl();
-			if (requesturl == null || "".equals(requesturl) || !requesturl.toLowerCase().contains("http")) {
-				throw new IOException("请求的URL【" + requesturl + "】不规范，请按照规范添加http或者https!");
+			if (!requesturl.toLowerCase().contains("http") || !requesturl.toLowerCase().contains("https")) {
+				if (requestParam.isUseHttps()) {
+					requesturl = "https://" + requesturl;
+					requestParam.setUrl(requesturl);
+				} else {
+					requesturl = "http://" + requesturl;
+					requestParam.setUrl(requesturl);
+				}
 			}
 
 			if (requestParam.isUseHttps()) {
