@@ -23,6 +23,52 @@ public class HttpResponseResultVo {
 	private byte[] htmlByteResult = null;
 
 	/**
+	 * 是否成功
+	 */
+	private boolean success = false;
+
+	/**
+	 * 提示信息
+	 */
+	private String noticeMessage = "";
+
+	/**
+	 * 获取提示信息
+	 * 
+	 * @return
+	 */
+	public String getNoticeMessage() {
+		return noticeMessage;
+	}
+
+	/**
+	 * 设置提示信息
+	 * 
+	 * @param noticeMessage
+	 */
+	public void setNoticeMessage(String noticeMessage) {
+		this.noticeMessage = noticeMessage;
+	}
+
+	/**
+	 * 获取是否成功
+	 * 
+	 * @return
+	 */
+	public boolean isSuccess() {
+		return success;
+	}
+
+	/**
+	 * 设置是否成功
+	 * 
+	 * @param success
+	 */
+	public void setSuccess(boolean success) {
+		this.success = success;
+	}
+
+	/**
 	 * 获取比特类型的页面结果
 	 * 
 	 * @return
