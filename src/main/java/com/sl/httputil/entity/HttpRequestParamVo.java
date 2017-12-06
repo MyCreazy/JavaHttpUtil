@@ -22,9 +22,9 @@ public class HttpRequestParamVo {
 	private String commitparam = "";
 
 	/**
-	 * 请求类型
+	 * 请求类型(默认为GET请求)
 	 */
-	private String method = "";
+	private String method = "GET";
 
 	/**
 	 * 超时时间，默认为10秒

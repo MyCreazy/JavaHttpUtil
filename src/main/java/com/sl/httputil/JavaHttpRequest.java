@@ -247,6 +247,8 @@ public class JavaHttpRequest {
 			}
 		}
 
+		responseResult.setSuccess(true);
+
 		return responseResult;
 	}
 
@@ -264,7 +266,7 @@ public class JavaHttpRequest {
 		try {
 			//// 检查是否符合URL规范,简单检查比如是否带上HTTP或者https
 			String requesturl = requestParam.getUrl();
-			if (!requesturl.toLowerCase().contains("http") || !requesturl.toLowerCase().contains("https")) {
+			if (!requesturl.toLowerCase().contains("http") && !requesturl.toLowerCase().contains("https")) {
 				if (requestParam.isUseHttps()) {
 					requesturl = "https://" + requesturl;
 					requestParam.setUrl(requesturl);
